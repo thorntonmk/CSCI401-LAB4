@@ -10,23 +10,26 @@ int multiply(int a, int b);
 
 int divide(int a, int b);
 
-void exit_p();
+int exit_p(int a, int b);
 
 
 int main (void)
 {
 	/* IMPLEMENT ME: Insert your algorithm here */
 	//make an array of function pointers
-	void *(functions[])(int, int) = {add, subtract, multiply, divide, exit};
+	int (*functions[])(int,int) = {&add, &subtract, &multiply, &divide, &exit_p};
 	int a = 5; int b = 15;
 	int op;
 
-	printf("Operand 'a' : %d | Operand 'b' : %d.\nSpecify the operation to perform (0 : add | 1 : subtract | 2 : Multiply | 3 : divide | 4 : exit):4 ", a, b);
-	scanf("%d", &op);
+	while(1) {
+		printf("Operand 'a' : %d | Operand 'b' : %d.\nSpecify the operation to perform (0 : add | 1 : subtract | 2 : Multiply | 3 : divide | 4 : exit): ", a, b);
+		scanf("%d", &op);
 
-	int res = (*functions[op])(a, b);
+		int result = (*functions[op])(a, b);
+		printf("X = %d\n", result);
+	}
 
-	printf("X = %d", res);
+	
 
 	return 0;
 }
@@ -49,6 +52,7 @@ int divide(int a, int b) {
 	return a/b;
 }
 
-void exit_p() {
+int exit_p(int a, int b) {
 	exit(0);
+	return 0;
 }

@@ -1,2 +1,2 @@
-task2: $(TASK1_SRC)
+task2:
 	gcc task2.c -o task2
